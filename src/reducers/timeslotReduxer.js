@@ -2,6 +2,7 @@ import {
   TIMESLOT_FAIL,
   TIMESLOT_SUCCESS,
   TIMESLOT_REQUEST,
+  TIMESLOT_ADD,
 } from '../constants/constants.js';
 
 export const timeslotListReducer = (state = { timeslot: [] }, action) => {
@@ -20,6 +21,11 @@ export const timeslotListReducer = (state = { timeslot: [] }, action) => {
       return {
         loading: false,
         error: action.payload,
+      };
+    case TIMESLOT_ADD:
+      return {
+        loading: false,
+        timeslot: [...state.timeslot, action.payload],
       };
     default:
       return state;
