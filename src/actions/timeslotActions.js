@@ -68,3 +68,17 @@ export const removeTimeslots = (index) => async (dispatch) => {
     });
   }
 };
+
+export const updateTimeslots = (data, index) => async (dispatch) => {
+  try {
+    dispatch({ type: TIMESLOT_REMOVE, payload: data, index: index });
+  } catch (error) {
+    dispatch({
+      type: TIMESLOT_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

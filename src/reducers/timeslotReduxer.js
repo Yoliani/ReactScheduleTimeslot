@@ -30,7 +30,6 @@ export const timeslotListReducer = (state = { timeslot: [] }, action) => {
         ...state,
         timeslot: [...state.timeslot, action.payload],
       };
-
     case TIMESLOT_REMOVE:
       const changedVal = (state.timeslot[action.payload].isCancelled = true);
       return {
@@ -43,18 +42,18 @@ export const timeslotListReducer = (state = { timeslot: [] }, action) => {
     // ),
     //timeslot: (state.timeslot[action.payload].isCanceled = true),
     case TIMESLOT_UPDATE:
+      let newArray = [];
+      newArray = [...state.timeslot];
+      newArray[action.index].activityName = action.payload.activityName;
+      newArray[action.index].date = action.payload.date;
+      newArray[action.index].startTime = action.payload.startTime;
+      newArray[action.index].endTime = action.payload.endTime;
+      newArray[action.index].numMaxGuests = action.payload.numMaxGuests;
+
       return {
         loading: false,
         ...state,
-        // timeslot: state.timeslot.map((timeslot) => {
-        //   if (timeslot.id === action.payload.id) {
-        //     return action.payload;
-        //   }
-        //   return timeslot;
-        // }),
-        timeslot: state.timeslot
-          .slice(0, action.payload.id)
-          .concat(action.payload, state.timeslot.slice(action.payload.id + 1)),
+        timeslot: newArray,
       };
     default:
       return state;

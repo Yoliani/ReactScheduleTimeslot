@@ -1,28 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { Col, Container, Row, Button, Modal } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { listTimeslots, appendTimeslots } from '../actions/timeslotActions';
-import Timeslots from './Timeslosts.js';
-const CalendarTimeSlot = ({ date_prop }) => {
+import React, { useState } from 'react';
+import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { updateTimeslots } from '../actions/timeslotActions.js';
+
+const ModalTimeslot = ({ index, showM }) => {
   //Modal
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(showM);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
-  //show timeslots
-  const timeslotList = useSelector((state) => state.timeslotList);
   const dispatch = useDispatch();
-  const { loading, error, timeslot } = timeslotList;
 
-  useEffect(() => {
-    dispatch(listTimeslots());
-  }, [dispatch]);
-
-  //Add timeslot
   //States for inputs
   let [activity, setActivity] = useState('');
 
-  let [date, setDate] = useState(date_prop);
+  let [date, setDate] = useState();
   let [startTime, setStartTime] = useState('');
   let [endTime, setEndTime] = useState('');
   let [numberGuests, setNumberGuests] = useState('');
@@ -43,22 +34,11 @@ const CalendarTimeSlot = ({ date_prop }) => {
   };
 
   return (
-    <>
+    <div>
       <Container>
-        <h1 style={{ justifyItems: 'center', textAlign: 'center' }}>
-          Schedule Timeslots
-        </h1>
-
-        <Row className="text-center">
-          <Col>
-            <Button className="btn-primary" onClick={handleShow}>
-              Agregar
-            </Button>
-          </Col>
-        </Row>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Insert Timeslot</Modal.Title>
+            <Modal.Title>Update Timeslot</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Row
@@ -133,14 +113,17 @@ const CalendarTimeSlot = ({ date_prop }) => {
               variant="primary"
               onClick={() => {
                 dispatch(
-                  appendTimeslots({
-                    activityName: activity,
-                    date: date,
-                    startTime: startTime,
-                    endTime: endTime,
-                    numMaxGuests: numberGuests,
-                    isCancelled: false,
-                  })
+                  updateTimeslots(
+                    {
+                      activityName: activity,
+                      date: date,
+                      startTime: startTime,
+                      endTime: endTime,
+                      numMaxGuests: numberGuests,
+                      isCancelled: false,
+                    },
+                    index
+                  )
                 );
                 handleClose();
               }}
@@ -149,15 +132,9 @@ const CalendarTimeSlot = ({ date_prop }) => {
             </Button>
           </Modal.Footer>
         </Modal>
-        <Row>
-          {timeslot.map((ts, index) => (
-            <Col sm={12} md={6} lg={4} xl={3}>
-              <Timeslots timeslot={ts} index={index}></Timeslots>
-            </Col>
-          ))}
-        </Row>
       </Container>
-    </>
+    </div>
   );
 };
-export default CalendarTimeSlot;
+
+export default ModalTimeslot;

@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Button, Container } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { removeTimeslots } from '../actions/timeslotActions';
+import ModalTimeslot from './ModalTimeslot.js';
+
 const Timeslot = ({ timeslot, index }) => {
   const dispatch = useDispatch();
   const cancelled = timeslot.isCancelled;
+  const [show, setShow] = useState(true);
 
+  const handleOpen = () => {
+    setShow(true);
+    console.log(show);
+  };
   return (
     <Card className="my-3 p-2 rounded">
       <Card.Body>
@@ -37,7 +44,10 @@ const Timeslot = ({ timeslot, index }) => {
             >
               Remove
             </Button>
-            <Button className="btn-info">Edit</Button>
+            <Button className="btn-info" onClick={handleOpen}>
+              Edit
+            </Button>
+            <ModalTimeslot index={index} showM={show} />
           </Container>
         )}
       </Card.Body>
