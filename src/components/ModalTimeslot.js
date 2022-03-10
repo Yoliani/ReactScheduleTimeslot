@@ -140,6 +140,7 @@ const ModalTimeslot = ({ timeslot, index, showM, handleShow }) => {
                   )
                 );
                 handleClose();
+                handleShow();
               }}
             >
               Save Changes
