@@ -28,12 +28,15 @@ export default function Day({ day, rowIdx, timeslot }) {
           </p>
         </Button>
       </header>
-      <div className="flex-1 cursor-pointer">
-        <Container>
-          {' '}
-          <TimeslotByDate date={day.format('YYYY-MM-DD')} timeslot={timeslot} />
-        </Container>
-      </div>
+      <Container
+        style={{
+          justifyItems: 'center',
+          textAlign: 'center',
+        }}
+      >
+        {' '}
+        <TimeslotByDate date={day.format('YYYY-MM-DD')} timeslot={timeslot} />
+      </Container>
     </div>
   );
 }

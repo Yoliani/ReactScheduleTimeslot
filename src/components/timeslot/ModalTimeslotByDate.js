@@ -5,7 +5,6 @@ import { removeTimeslots } from '../../actions/timeslotActions';
 import ModalTimeslot from './../ModalTimeslot.js';
 
 const ModalTimeslotByDate = ({ timeslot, index }) => {
-  console.log('ACA DENTRO', timeslot);
   const [show, setShow] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
 
@@ -27,12 +26,18 @@ const ModalTimeslotByDate = ({ timeslot, index }) => {
     setShowEdit(false);
     // console.log(show);
   };
-
+  function getCurrentDayClass() {
+    return timeslot.isCancelled === true ? 'btn-danger' : 'bg-success';
+  }
   return (
     <div>
       <Button
-        style={{ justifyItems: 'center', textAlign: 'center' }}
-        className="btn-info my-2 block-center"
+        style={{
+          justifyItems: 'center',
+          textAlign: 'center',
+          borderRadius: '12px',
+        }}
+        className={`my-2 block-center  ${getCurrentDayClass()}`}
         onClick={handleOpen}
       >
         {timeslot.activityName}
