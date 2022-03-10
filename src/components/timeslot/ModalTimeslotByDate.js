@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Col, Container, Row, Button, Modal, Card } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-
+import React, { useState } from 'react';
+import { Button, Card, Container, Modal } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import { removeTimeslots } from '../../actions/timeslotActions';
 import ModalTimeslot from './../ModalTimeslot.js';
+
 const ModalTimeslotByDate = ({ timeslot, index }) => {
+  console.log('ACA DENTRO', timeslot);
   const [show, setShow] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
 
@@ -76,9 +77,9 @@ const ModalTimeslotByDate = ({ timeslot, index }) => {
               {showEdit ? (
                 <ModalTimeslot
                   index={index}
-                  showM={show}
+                  showM={showEdit}
                   timeslot={timeslot}
-                  handleShow={handleOpenE}
+                  handleShow={handleShowE}
                 />
               ) : null}
             </Card.Body>

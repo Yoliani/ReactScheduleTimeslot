@@ -8,6 +8,8 @@ import {
 } from '../constants/constants.js';
 
 export const timeslotListReducer = (state = { timeslot: [] }, action) => {
+  console.log('State ', state);
+  console.log('Action ', action);
   switch (action.type) {
     case TIMESLOT_REQUEST:
       return {
@@ -26,8 +28,8 @@ export const timeslotListReducer = (state = { timeslot: [] }, action) => {
       };
     case TIMESLOT_ADD:
       return {
-        loading: false,
         ...state,
+        loading: false,
         timeslot: [...state.timeslot, action.payload],
       };
     case TIMESLOT_REMOVE:
