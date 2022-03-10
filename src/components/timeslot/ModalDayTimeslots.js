@@ -1,9 +1,30 @@
 import React from 'react';
+import { Modal, Button } from 'react-bootstrap';
+import Timeline from 'react-calendar-timeline';
+import 'react-calendar-timeline/lib/Timeline.css';
 
-const ModalDayTimeslots = () => {
+import { ReactAgenda } from 'react-agenda';
+import moment from 'moment';
+import Timeslot from '../Timeslosts';
+const ModalDayTimeslots = ({ timeslot, date, show, handleClose }) => {
+  const now = new Date();
+
   return (
     <div>
-      <h2>Day Timeslots</h2>
+      <Modal show={show} fullscreen={true} onHide={() => handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            <Button onClick={handleClose}>Go back</Button>
+          </Modal.Title>
+        </Modal.Header>
+        {timeslot.map((item, index) => {
+          if (item.date === date) {
+            <Timeslot timeslot={item} index={index} />;
+          }
+        })}
+
+        <Modal.Body></Modal.Body>
+      </Modal>
     </div>
   );
 };

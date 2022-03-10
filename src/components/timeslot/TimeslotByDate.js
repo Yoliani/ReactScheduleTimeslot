@@ -3,9 +3,9 @@ import { Col, Container } from 'react-bootstrap';
 import ModalTimeslotByDate from './ModalTimeslotByDate.js';
 
 const TimeslotByDate = ({ date, timeslot }) => {
-  useEffect(() => {
-    console.log('CAMBIO DENTRO', { timeslot });
-  }, [timeslot]);
+  // useEffect(() => {
+  //   console.log('CAMBIO DENTRO', { timeslot });
+  // }, [timeslot]);
 
   return (
     <Container>

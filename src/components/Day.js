@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Button, Container } from 'react-bootstrap';
 import GlobalContext from '../context/GlobalContext';
 import TimeslotByDate from './timeslot/TimeslotByDate.js';
+import ModalDayTimeslots from './timeslot/ModalDayTimeslots.js';
 export default function Day({ day, rowIdx, timeslot }) {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
@@ -20,6 +21,7 @@ export default function Day({ day, rowIdx, timeslot }) {
         )}
         <Button
           style={{ borderRadius: '60px', backgroundColor: 'transparent' }}
+          onClick={handleShow}
         >
           <p
             className={`text-sm p-1 my-1 text-center  ${getCurrentDayClass()}`}
@@ -36,6 +38,16 @@ export default function Day({ day, rowIdx, timeslot }) {
       >
         {' '}
         <TimeslotByDate date={day.format('YYYY-MM-DD')} timeslot={timeslot} />
+      </Container>
+      <Container>
+        {show ? (
+          <ModalDayTimeslots
+            timeslot={timeslot}
+            date={day.format('YYYY-MM-DD')}
+            show={show}
+            handleClose={handleClose}
+          />
+        ) : null}
       </Container>
     </div>
   );
