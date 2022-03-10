@@ -3,7 +3,7 @@ import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { updateTimeslots } from '../actions/timeslotActions.js';
 
-const ModalTimeslot = ({ index, showM }) => {
+const ModalTimeslot = ({ index, showM, handleShow }) => {
   //Modal
   const [show, setShow] = useState(showM);
   const handleClose = () => setShow(false);
@@ -36,8 +36,8 @@ const ModalTimeslot = ({ index, showM }) => {
   return (
     <div>
       <Container>
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
+        <Modal show={show} onHide={handleShow}>
+          <Modal.Header>
             <Modal.Title>Update Timeslot</Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -106,7 +106,13 @@ const ModalTimeslot = ({ index, showM }) => {
             </Row>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+            <Button
+              variant="secondary"
+              onClick={() => {
+                handleClose();
+                handleShow();
+              }}
+            >
               Close
             </Button>
             <Button
