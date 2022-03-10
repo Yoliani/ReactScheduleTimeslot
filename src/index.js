@@ -4,13 +4,15 @@ import { Provider } from 'react-redux';
 import store from './store';
 import './index.css';
 import './bootstrap.min.css';
-
+import ContextWrapper from './context/ContextWrapper';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ContextWrapper>
+      <App />
+    </ContextWrapper>
   </Provider>,
   document.getElementById('root')
 );

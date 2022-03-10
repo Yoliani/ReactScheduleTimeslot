@@ -14,7 +14,7 @@ export const listTimeslots = () => async (dispatch) => {
     const initialData = [
       {
         activityName: 'Walking Tour',
-        date: '2021-10-10',
+        date: '2022-10-03',
         startTime: '11:00',
         endTime: '13:00',
         numMaxGuests: 10,

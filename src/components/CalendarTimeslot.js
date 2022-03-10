@@ -13,11 +13,9 @@ const CalendarTimeSlot = ({ date_prop }) => {
   const timeslotList = useSelector((state) => state.timeslotList);
   const dispatch = useDispatch();
   const { loading, error, timeslot } = timeslotList;
-
   useEffect(() => {
     dispatch(listTimeslots());
   }, [dispatch]);
-
   //Add timeslot
   //States for inputs
   let [activity, setActivity] = useState('');
@@ -150,7 +148,6 @@ const CalendarTimeSlot = ({ date_prop }) => {
           </Modal.Footer>
         </Modal>
         <Row>
-          {console.log(timeslot)}
           {timeslot.map((ts, index) => (
             <Col sm={12} md={6} lg={4} xl={3}>
               <Timeslots timeslot={ts} index={index}></Timeslots>
