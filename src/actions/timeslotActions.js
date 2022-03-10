@@ -3,6 +3,7 @@ import {
   TIMESLOT_SUCCESS,
   TIMESLOT_REQUEST,
   TIMESLOT_ADD,
+  TIMESLOT_REMOVE,
 } from '../constants/constants.js';
 
 export const listTimeslots = () => async (dispatch) => {
@@ -16,6 +17,7 @@ export const listTimeslots = () => async (dispatch) => {
         startTime: '11:00',
         endTime: '13:00',
         numMaxGuests: 10,
+        isCancelled: false,
       },
       {
         activityName: 'Walking Tour',
@@ -23,6 +25,7 @@ export const listTimeslots = () => async (dispatch) => {
         startTime: '11:00',
         endTime: '13:00',
         numMaxGuests: 10,
+        isCancelled: false,
       },
     ];
 
@@ -38,11 +41,23 @@ export const listTimeslots = () => async (dispatch) => {
   }
 };
 
-export const appendTimeslots = () => async (dispatch, data) => {
+export const appendTimeslots = (data) => async (dispatch) => {
   try {
-    dispatch({ type: TIMESLOT_REQUEST });
-
     dispatch({ type: TIMESLOT_ADD, payload: data });
+  } catch (error) {
+    dispatch({
+      type: TIMESLOT_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const removeTimeslots = (index) => async (dispatch) => {
+  try {
+    dispatch({ type: TIMESLOT_REMOVE, payload: index });
   } catch (error) {
     dispatch({
       type: TIMESLOT_FAIL,

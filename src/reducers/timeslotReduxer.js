@@ -3,6 +3,8 @@ import {
   TIMESLOT_SUCCESS,
   TIMESLOT_REQUEST,
   TIMESLOT_ADD,
+  TIMESLOT_REMOVE,
+  TIMESLOT_UPDATE,
 } from '../constants/constants.js';
 
 export const timeslotListReducer = (state = { timeslot: [] }, action) => {
@@ -27,6 +29,32 @@ export const timeslotListReducer = (state = { timeslot: [] }, action) => {
         loading: false,
         ...state,
         timeslot: [...state.timeslot, action.payload],
+      };
+
+    case TIMESLOT_REMOVE:
+      const changedVal = (state.timeslot[action.payload].isCancelled = true);
+      return {
+        loading: false,
+        ...state,
+        changedVal,
+      };
+    // timeslot: state.timeslot.filter(
+    //   (timeslot) => timeslot.id !== action.payload
+    // ),
+    //timeslot: (state.timeslot[action.payload].isCanceled = true),
+    case TIMESLOT_UPDATE:
+      return {
+        loading: false,
+        ...state,
+        // timeslot: state.timeslot.map((timeslot) => {
+        //   if (timeslot.id === action.payload.id) {
+        //     return action.payload;
+        //   }
+        //   return timeslot;
+        // }),
+        timeslot: state.timeslot
+          .slice(0, action.payload.id)
+          .concat(action.payload, state.timeslot.slice(action.payload.id + 1)),
       };
     default:
       return state;

@@ -1,17 +1,45 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
-const Timeslot = ({ timeslot }) => {
+import { Card, Button, Container } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { removeTimeslots } from '../actions/timeslotActions';
+const Timeslot = ({ timeslot, index }) => {
+  const dispatch = useDispatch();
+  const cancelled = timeslot.isCancelled;
+
   return (
-    <Card className="my-3 p-3 rounded">
+    <Card className="my-3 p-2 rounded">
       <Card.Body>
-        <Card.Title as="div">
+        <Card.Title as="h3">
           <strong>{timeslot.activityName}</strong>
         </Card.Title>
-
         <Card.Text as="div">
-          <div className="my-3"></div>
+          <div className="my-3"> Start time: {timeslot.startTime}</div>
         </Card.Text>
-        <Card.Text as="h3">{timeslot.date}</Card.Text>
+        <Card.Text as="div">
+          <div className="my-3"> End time: {timeslot.endTime}</div>
+        </Card.Text>
+        <Card.Text as="div">
+          <div className="my-3">
+            {' '}
+            Maximum number of guests: {timeslot.numMaxGuests}
+          </div>
+        </Card.Text>
+        <Card.Text>Date: {timeslot.date}</Card.Text>
+        {cancelled ? (
+          <Card.Text as="h4">CANCELLED</Card.Text>
+        ) : (
+          <Container>
+            <Button
+              className="btn-danger"
+              onClick={() => {
+                dispatch(removeTimeslots(index));
+              }}
+            >
+              Remove
+            </Button>
+            <Button className="btn-info">Edit</Button>
+          </Container>
+        )}
       </Card.Body>
     </Card>
   );

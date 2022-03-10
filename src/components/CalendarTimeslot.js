@@ -13,7 +13,7 @@ const CalendarTimeSlot = ({ date_prop }) => {
   //show timeslots
   const timeslotList = useSelector((state) => state.timeslotList);
   const dispatch = useDispatch();
-
+  console.log(timeslotList);
   const { loading, error, timeslot } = timeslotList;
 
   useEffect(() => {
@@ -30,7 +30,6 @@ const CalendarTimeSlot = ({ date_prop }) => {
   let [numberGuests, setNumberGuests] = useState('');
   const handleActivity = (e) => {
     setActivity(e.target.value);
-    console.log(activity);
   };
   const handleDate = (e) => {
     setDate(e.target.value);
@@ -78,7 +77,7 @@ const CalendarTimeSlot = ({ date_prop }) => {
                 />
               </Col>
               <Col>
-                <h4>Fecha</h4>
+                <h4>Date</h4>
                 <input
                   type="date"
                   name=""
@@ -142,8 +141,16 @@ const CalendarTimeSlot = ({ date_prop }) => {
                     startTime: startTime,
                     endTime: endTime,
                     numMaxGuests: numberGuests,
+                    isCancelled: false,
+
+                    // activityName: 'Walking Tour',
+                    // date: '2021-10-10',
+                    // startTime: '11:00',
+                    // endTime: '13:00',
+                    // numMaxGuests: 10,
                   })
                 );
+                handleClose();
               }}
             >
               Save Changes
@@ -151,9 +158,9 @@ const CalendarTimeSlot = ({ date_prop }) => {
           </Modal.Footer>
         </Modal>
         <Row>
-          {timeslot.map((ts) => (
+          {timeslot.map((ts, index) => (
             <Col sm={12} md={6} lg={4} xl={3}>
-              <Timeslots timeslot={ts}></Timeslots>
+              <Timeslots timeslot={ts} index={index}></Timeslots>
             </Col>
           ))}
         </Row>
