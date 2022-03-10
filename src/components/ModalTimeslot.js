@@ -3,7 +3,7 @@ import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { updateTimeslots } from '../actions/timeslotActions.js';
 
-const ModalTimeslot = ({ index, showM, handleShow }) => {
+const ModalTimeslot = ({ timeslot, index, showM, handleShow }) => {
   //Modal
   const [show, setShow] = useState(showM);
   const handleClose = () => setShow(false);
@@ -11,12 +11,12 @@ const ModalTimeslot = ({ index, showM, handleShow }) => {
   const dispatch = useDispatch();
 
   //States for inputs
-  let [activity, setActivity] = useState('');
+  let [activity, setActivity] = useState(timeslot.activityName);
 
-  let [date, setDate] = useState();
-  let [startTime, setStartTime] = useState('');
-  let [endTime, setEndTime] = useState('');
-  let [numberGuests, setNumberGuests] = useState('');
+  let [date, setDate] = useState(timeslot.date);
+  let [startTime, setStartTime] = useState(timeslot.startTime);
+  let [endTime, setEndTime] = useState(timeslot.endTime);
+  let [numberGuests, setNumberGuests] = useState(timeslot.numMaxGuests);
   const handleActivity = (e) => {
     setActivity(e.target.value);
   };
@@ -128,6 +128,14 @@ const ModalTimeslot = ({ index, showM, handleShow }) => {
                       numMaxGuests: numberGuests,
                       isCancelled: false,
                     },
+                    // {
+                    //   activityName: 'Walking Tour Cambiado',
+                    //   date: '2021-10-10',
+                    //   startTime: '11:00',
+                    //   endTime: '13:00',
+                    //   numMaxGuests: 10,
+                    //   isCancelled: false,
+                    // },
                     index
                   )
                 );

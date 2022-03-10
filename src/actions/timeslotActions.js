@@ -4,6 +4,7 @@ import {
   TIMESLOT_REQUEST,
   TIMESLOT_ADD,
   TIMESLOT_REMOVE,
+  TIMESLOT_UPDATE,
 } from '../constants/constants.js';
 
 export const listTimeslots = () => async (dispatch) => {
@@ -71,7 +72,7 @@ export const removeTimeslots = (index) => async (dispatch) => {
 
 export const updateTimeslots = (data, index) => async (dispatch) => {
   try {
-    dispatch({ type: TIMESLOT_REMOVE, payload: data, index: index });
+    dispatch({ type: TIMESLOT_UPDATE, payload: data, index: index });
   } catch (error) {
     dispatch({
       type: TIMESLOT_FAIL,

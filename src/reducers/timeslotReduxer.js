@@ -37,23 +37,20 @@ export const timeslotListReducer = (state = { timeslot: [] }, action) => {
         ...state,
         changedVal,
       };
-    // timeslot: state.timeslot.filter(
-    //   (timeslot) => timeslot.id !== action.payload
-    // ),
-    //timeslot: (state.timeslot[action.payload].isCanceled = true),
+
     case TIMESLOT_UPDATE:
-      let newArray = [];
-      newArray = [...state.timeslot];
-      newArray[action.index].activityName = action.payload.activityName;
-      newArray[action.index].date = action.payload.date;
-      newArray[action.index].startTime = action.payload.startTime;
-      newArray[action.index].endTime = action.payload.endTime;
-      newArray[action.index].numMaxGuests = action.payload.numMaxGuests;
+      let newArray = [...state.timeslot];
+      newArray[action.index]['activityName'] = action.payload['activityName'];
+      newArray[action.index]['date'] = action.payload['date'];
+      newArray[action.index]['startTime'] = action.payload['startTime'];
+      newArray[action.index]['endTime'] = action.payload['endTime'];
+      newArray[action.index]['numMaxGuests'] = action.payload['numMaxGuests'];
+      newArray[action.index].isCancelled = action.payload.isCancelled;
 
       return {
-        loading: false,
+        loading: true,
         ...state,
-        timeslot: newArray,
+        newArray,
       };
     default:
       return state;

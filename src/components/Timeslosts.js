@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Card, Button, Container } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { removeTimeslots } from '../actions/timeslotActions';
@@ -55,7 +55,12 @@ const Timeslot = ({ timeslot, index }) => {
           </Container>
         )}
         {show ? (
-          <ModalTimeslot index={index} showM={show} handleShow={handleShow} />
+          <ModalTimeslot
+            index={index}
+            showM={show}
+            timeslot={timeslot}
+            handleShow={handleShow}
+          />
         ) : null}
       </Card.Body>
     </Card>
