@@ -7,7 +7,7 @@ const reducer = combineReducers({
   timeslotList: timeslotListReducer,
 });
 
-const initialState = [];
+const initialState = {};
 const middleware = [thunk];
 
 const store = createStore(

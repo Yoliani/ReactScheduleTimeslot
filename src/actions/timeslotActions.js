@@ -2,6 +2,7 @@ import {
   TIMESLOT_FAIL,
   TIMESLOT_SUCCESS,
   TIMESLOT_REQUEST,
+  TIMESLOT_ADD,
 } from '../constants/constants.js';
 
 export const listTimeslots = () => async (dispatch) => {
@@ -26,6 +27,22 @@ export const listTimeslots = () => async (dispatch) => {
     ];
 
     dispatch({ type: TIMESLOT_SUCCESS, payload: initialData });
+  } catch (error) {
+    dispatch({
+      type: TIMESLOT_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const appendTimeslots = () => async (dispatch, data) => {
+  try {
+    dispatch({ type: TIMESLOT_REQUEST });
+
+    dispatch({ type: TIMESLOT_ADD, payload: data });
   } catch (error) {
     dispatch({
       type: TIMESLOT_FAIL,

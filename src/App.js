@@ -1,8 +1,10 @@
-import CalendarT from './components/CalendarTimeslot';
+import CalendarTimeslot from './components/CalendarTimeslot';
 function App() {
   return (
     <>
-      <CalendarT />
+      <CalendarTimeslot
+        calendar={new Date('2022-03-09').toISOString().slice(0, 10)}
+      />
     </>
   );
 }

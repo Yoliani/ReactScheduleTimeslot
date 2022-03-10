@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Col, Container, Row, Button, Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { listTimeslots } from '../actions/timeslotActions';
+import { listTimeslots, appendTimeslots } from '../actions/timeslotActions';
 import Timeslots from './Timeslosts.js';
 
-const CalendarTimeSlot = () => {
+const CalendarTimeSlot = ({ date_prop }) => {
   //Modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -15,6 +15,7 @@ const CalendarTimeSlot = () => {
   const dispatch = useDispatch();
 
   const { loading, error, timeslot } = timeslotList;
+
   useEffect(() => {
     dispatch(listTimeslots());
   }, [dispatch]);
@@ -23,26 +24,27 @@ const CalendarTimeSlot = () => {
   //States for inputs
   let [activity, setActivity] = useState('');
 
-  let [date, setDate] = useState(new Date('2022-03-09'));
+  let [date, setDate] = useState(date_prop);
   let [startTime, setStartTime] = useState('');
   let [endTime, setEndTime] = useState('');
   let [numberGuests, setNumberGuests] = useState('');
   const handleActivity = (e) => {
-    setActivity({ activity: e.target.value });
+    setActivity(e.target.value);
+    console.log(activity);
   };
   const handleDate = (e) => {
-    setDate({ date: e.target.value });
+    setDate(e.target.value);
   };
   const handleStartTime = (e) => {
-    setStartTime({ startTime: e.target.value });
+    setStartTime(e.target.value);
   };
   const handleEndTime = (e) => {
-    setEndTime({ endTime: e.target.value });
+    setEndTime(e.target.value);
   };
   const handleNumberGuests = (e) => {
-    setNumberGuests({ numberGuests: e.target.value });
+    setNumberGuests(e.target.value);
   };
-  const addTimeslot = () => {};
+
   return (
     <>
       <Container>
@@ -81,6 +83,7 @@ const CalendarTimeSlot = () => {
                   type="date"
                   name=""
                   value={date}
+                  asp-format="{0:yyyy-MM-dd}"
                   onChange={(e) => handleDate(e)}
                 />
               </Col>
@@ -129,7 +132,20 @@ const CalendarTimeSlot = () => {
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={handleClose}>
+            <Button
+              variant="primary"
+              onClick={() => {
+                dispatch(
+                  appendTimeslots({
+                    activityName: activity,
+                    date: date,
+                    startTime: startTime,
+                    endTime: endTime,
+                    numMaxGuests: numberGuests,
+                  })
+                );
+              }}
+            >
               Save Changes
             </Button>
           </Modal.Footer>

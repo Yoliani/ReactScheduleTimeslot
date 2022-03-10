@@ -25,6 +25,7 @@ export const timeslotListReducer = (state = { timeslot: [] }, action) => {
     case TIMESLOT_ADD:
       return {
         loading: false,
+        ...state,
         timeslot: [...state.timeslot, action.payload],
       };
     default:
