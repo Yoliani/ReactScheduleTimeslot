@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ReactScheduleTimeslot/static/css/main.c032dc63.css",
-    "main.js": "/ReactScheduleTimeslot/static/js/main.6b777df7.js",
+    "main.css": "/ReactScheduleTimeslot/static/css/main.6b4a4e28.css",
+    "main.js": "/ReactScheduleTimeslot/static/js/main.091e91c6.js",
     "static/js/787.eb23d31e.chunk.js": "/ReactScheduleTimeslot/static/js/787.eb23d31e.chunk.js",
     "index.html": "/ReactScheduleTimeslot/index.html",
-    "main.c032dc63.css.map": "/ReactScheduleTimeslot/static/css/main.c032dc63.css.map",
-    "main.6b777df7.js.map": "/ReactScheduleTimeslot/static/js/main.6b777df7.js.map",
+    "main.6b4a4e28.css.map": "/ReactScheduleTimeslot/static/css/main.6b4a4e28.css.map",
+    "main.091e91c6.js.map": "/ReactScheduleTimeslot/static/js/main.091e91c6.js.map",
     "787.eb23d31e.chunk.js.map": "/ReactScheduleTimeslot/static/js/787.eb23d31e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c032dc63.css",
-    "static/js/main.6b777df7.js"
+    "static/css/main.6b4a4e28.css",
+    "static/js/main.091e91c6.js"
   ]
 }
