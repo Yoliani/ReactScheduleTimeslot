@@ -11,9 +11,8 @@ const TimeslotByDate = ({ date, timeslot }) => {
     <Container>
       {timeslot.map((ts, index) => (
         <Col sm={12} md={6} lg={4} xl={3} key={index}>
-          {console.log(ts.date, date, date === ts.date, date == ts.date)}
           {ts.date === date ? (
-            <ModalTimeslotByDate timeslot={ts} index={index} />
+            <ModalTimeslotByDate timeslot={ts} date={date} index={index} />
           ) : null}
         </Col>
       ))}

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { removeTimeslots } from '../../actions/timeslotActions';
 import ModalTimeslot from './../ModalTimeslot.js';
 
-const ModalTimeslotByDate = ({ timeslot, index }) => {
+const ModalTimeslotByDate = ({ timeslot, date, index }) => {
   const [show, setShow] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
 
@@ -94,4 +94,5 @@ const ModalTimeslotByDate = ({ timeslot, index }) => {
     </div>
   );
 };
+
 export default ModalTimeslotByDate;

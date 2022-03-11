@@ -12,9 +12,7 @@ export default function Month({ month }) {
     dispatch(listTimeslots());
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log('TIMESLOT CAMBIO', { timeslot });
-  }, [timeslot]);
+  useEffect(() => {}, [timeslot]);
 
   return (
     <div className="flex-1 grid grid-cols-7 grid-rows-5">
